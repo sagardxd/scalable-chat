@@ -25,6 +25,8 @@ class SocketService {
                 origin: '*'
             }
         });
+
+        sub.subscribe('MESSAGES')
     }
 
     public initListeners() {
@@ -37,6 +39,12 @@ class SocketService {
                 console.log(`New message: ${message}`)
                 await pub.publish('MESSAGES', JSON.stringify({message}));
             })
+        });
+
+        sub.on('message', (channel,message) => {
+            if(channel === "MESSAGES") {
+                io.emit("message", message);
+            }
         })
     }
 
