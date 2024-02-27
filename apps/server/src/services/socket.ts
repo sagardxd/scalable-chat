@@ -1,4 +1,18 @@
 import {Server} from "socket.io"
+import Redis from 'ioredis'
+
+const pub = new Redis({
+    host: "redis-768c9ab-sagardxd.a.aivencloud.com",
+    port: 13951,
+    username: "default",
+    password: "AVNS_KPsmmZ8rOHZKCR267_n"
+});
+const sub = new Redis({
+    host: "redis-768c9ab-sagardxd.a.aivencloud.com",
+    port: 13951,
+    username: "default",
+    password: "AVNS_KPsmmZ8rOHZKCR267_n"
+});
 
 class SocketService {
     private _io: Server;
@@ -21,6 +35,7 @@ class SocketService {
 
             socket.on('event:message', async ({message}: {message: string}) => {
                 console.log(`New message: ${message}`)
+                await pub.publish('MESSAGES', JSON.stringify({message}));
             })
         })
     }
