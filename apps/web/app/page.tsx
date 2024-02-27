@@ -11,7 +11,9 @@ export default function Page() {
     <div>
       <div>
         <input placeholder="message" onChange={(e) => setMessage(e.target.value)} />
-        <button onClick={(e) => sendMessage(message)}>Send</button>
+        <button onClick={(e) => sendMessage(message)}
+        className="bg-red-500"
+        >Send</button>
       </div>
       <div>
         {messages.map((e) => (
