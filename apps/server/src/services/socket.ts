@@ -3,16 +3,16 @@ import Redis from 'ioredis'
 import prismaClient from "./prisma";
 
 const pub = new Redis({
-    host: "redis-768c9ab-sagardxd.a.aivencloud.com",
+    host: process.env.REDIS_HOST,
     port: 13951,
-    username: "default",
-    password: "AVNS_KPsmmZ8rOHZKCR267_n"
+    username: process.env.REDIS_USERNAME,
+    password: process.env.REDIS_PASS
 });
 const sub = new Redis({
-    host: "redis-768c9ab-sagardxd.a.aivencloud.com",
+    host: process.env.REDIS_HOST,
     port: 13951,
-    username: "default",
-    password: "AVNS_KPsmmZ8rOHZKCR267_n"
+    username: process.env.REDIS_USERNAME,
+    password: process.env.REDIS_PASS
 });
 
 class SocketService {
